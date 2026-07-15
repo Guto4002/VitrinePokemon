@@ -1,0 +1,477 @@
+<!DOCTYPE html>
+<html lang="pt-BR"><head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Cartas Pokémon TCG à venda — 42.dev</title>
+<meta name="description" content="Vitrine de cartas Pokémon TCG à venda: Full Arts, Illustration Rares, promos e mais.">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Tenor+Sans&amp;display=swap" rel="stylesheet">
+<style>
+:root{
+  --bg:#111013;
+  --surface:#1a181d;
+  --surface-2:#211e24;
+  --border:rgba(240,234,226,.09);
+  --border-strong:rgba(240,234,226,.18);
+  --text:#efeae2;
+  --text-2:#9b958c;
+  --accent:#ec7a37;
+  --accent-soft:rgba(236,122,55,.14);
+  --radius:10px;
+}
+*{box-sizing:border-box;margin:0;padding:0}
+html{scroll-behavior:smooth}
+body{
+  background:var(--bg);
+  color:var(--text);
+  font-family:"IBM Plex Mono",monospace;
+  font-size:14px;
+  line-height:1.55;
+  -webkit-font-smoothing:antialiased;
+}
+.wrap{max-width:1150px;margin:0 auto;padding:0 20px}
+
+/* ── header ─────────────────────────────── */
+header{padding:56px 0 36px;border-bottom:1px solid var(--border)}
+.eyebrow{font-size:11px;letter-spacing:.22em;text-transform:uppercase;color:var(--accent)}
+h1{
+  font-family:"Tenor Sans",sans-serif;
+  font-weight:400;
+  font-size:clamp(30px,5vw,46px);
+  line-height:1.12;
+  margin:14px 0 10px;
+}
+.header-row{display:flex;align-items:flex-end;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.lead{color:var(--text-2);max-width:520px}
+.totals{text-align:right;flex-shrink:0}
+.totals .label{font-size:11px;letter-spacing:.18em;text-transform:uppercase;color:var(--text-2)}
+.totals .value{font-family:"Tenor Sans",sans-serif;font-size:30px;color:var(--text)}
+.brand{position:absolute;top:22px;right:20px;font-size:12px;color:var(--text-2)}
+.brand b{color:var(--accent);font-weight:500}
+.toolbar{display:flex;gap:10px;margin-top:26px;flex-wrap:wrap;align-items:center}
+.search{
+  flex:1;min-width:220px;max-width:340px;
+  background:var(--surface);border:1px solid var(--border);border-radius:8px;
+  color:var(--text);font:inherit;padding:9px 13px;outline:none;
+}
+.search:focus{border-color:var(--accent)}
+.search::placeholder{color:var(--text-2)}
+.count-pill{font-size:12px;color:var(--text-2)}
+
+/*
+  ── CONTATO (opcional) ────────────────────
+  Descomente o bloco .cta no HTML lá embaixo e
+  troque SEUNUMERO pelo teu WhatsApp com DDI+DDD,
+  ex: 5581999998888
+*/
+.cta{
+  display:inline-flex;align-items:center;gap:8px;
+  background:var(--accent);color:#141013;text-decoration:none;
+  padding:10px 18px;border-radius:8px;font-weight:500;font-size:13px;
+}
+.cta:hover{filter:brightness(1.08)}
+
+/* ── seções ─────────────────────────────── */
+section{padding:44px 0 8px}
+.sec-head{display:flex;align-items:baseline;gap:14px;margin-bottom:22px}
+.sec-head h2{
+  font-family:"Tenor Sans",sans-serif;font-weight:400;
+  font-size:clamp(20px,3vw,26px);
+}
+.sec-head .n{font-size:12px;color:var(--text-2)}
+.sec-head::after{content:"";flex:1;height:1px;background:var(--border)}
+
+/* ── grid de cards ──────────────────────── */
+.grid{
+  display:grid;
+  grid-template-columns:repeat(auto-fill,minmax(158px,1fr));
+  gap:18px 14px;
+}
+.card{
+  background:var(--surface);
+  border:1px solid var(--border);
+  border-radius:var(--radius);
+  padding:9px 9px 12px;
+  cursor:pointer;
+  transition:transform .25s ease,border-color .25s ease,opacity .25s ease;
+  display:flex;flex-direction:column;gap:8px;
+  position:relative;
+}
+.card:hover,.card:focus-visible{transform:translateY(-4px);border-color:var(--border-strong)}
+.card:focus-visible{outline:2px solid var(--accent);outline-offset:2px}
+.thumb{
+  position:relative;aspect-ratio:63/88;border-radius:6px;overflow:hidden;
+  background:var(--surface-2);
+}
+.thumb img{width:100%;height:100%;object-fit:cover;display:block}
+/* assinatura: brilho holográfico varrendo a carta no hover */
+.thumb::after{
+  content:"";position:absolute;inset:-40%;
+  background:linear-gradient(115deg,
+    transparent 38%,
+    rgba(255,214,170,.16) 45%,
+    rgba(160,220,255,.20) 50%,
+    rgba(255,170,220,.16) 55%,
+    transparent 62%);
+  transform:translateX(-70%) rotate(0.001deg);
+  pointer-events:none;
+}
+.card:hover .thumb::after{transition:transform .8s ease;transform:translateX(70%)}
+.qty{
+  position:absolute;top:6px;left:6px;z-index:2;
+  background:var(--accent);color:#141013;font-size:11px;font-weight:500;
+  padding:2px 7px;border-radius:20px;
+}
+.ph{
+  width:100%;height:100%;display:flex;flex-direction:column;align-items:center;justify-content:center;
+  gap:10px;padding:12px;text-align:center;
+  background:radial-gradient(circle at 50% 32%,#2b2630,#1a181d 70%);
+}
+.ph svg{width:44px;height:44px;opacity:.4}
+.ph span{font-size:11px;color:var(--text-2);line-height:1.4}
+.name{
+  font-family:"Tenor Sans",sans-serif;font-size:15px;line-height:1.25;
+  min-height:2.4em;
+}
+.meta{font-size:11px;color:var(--text-2)}
+.tag{
+  display:inline-block;margin-top:5px;
+  font-size:10px;color:var(--accent);background:var(--accent-soft);
+  border-radius:4px;padding:2px 6px;
+}
+.price-row{display:flex;align-items:baseline;justify-content:space-between;margin-top:auto;padding-top:6px}
+.price{color:var(--accent);font-weight:500;font-size:15px}
+.price small{font-size:10px;color:var(--text-2);font-weight:400}
+
+/* ── modo gerenciamento ─────────────────── */
+body.admin{padding-bottom:96px}
+.admin-btns{
+  position:absolute;top:6px;right:6px;z-index:3;
+  display:none;gap:6px;
+}
+body.admin .admin-btns{display:flex}
+.admin-btns button{
+  border:none;border-radius:7px;cursor:pointer;
+  font-family:inherit;font-size:13px;font-weight:500;line-height:1;
+  padding:6px 9px;color:#141013;
+}
+.btn-sold{background:#e05252}
+.btn-minus{background:#efeae2}
+.admin-btns button:hover{filter:brightness(1.1)}
+.card.sold{opacity:.32}
+.card.sold:hover{transform:none}
+.sold-flag{
+  position:absolute;inset:0;z-index:2;display:none;
+  align-items:center;justify-content:center;pointer-events:none;
+}
+.card.sold .sold-flag{display:flex}
+.sold-flag span{
+  background:#e05252;color:#141013;font-weight:500;font-size:12px;
+  letter-spacing:.14em;text-transform:uppercase;
+  padding:5px 14px;border-radius:6px;transform:rotate(-8deg);
+}
+.adminbar{
+  position:fixed;left:0;right:0;bottom:0;z-index:40;display:none;
+  background:var(--surface-2);border-top:1px solid var(--border-strong);
+  padding:14px 20px;
+}
+body.admin .adminbar{display:block}
+.adminbar-in{
+  max-width:1150px;margin:0 auto;display:flex;align-items:center;gap:14px;flex-wrap:wrap;
+}
+.adminbar-in .status{flex:1;min-width:200px;font-size:12px;color:var(--text-2)}
+.adminbar-in .status b{color:var(--text);font-weight:500}
+.adminbar-in button{
+  font-family:inherit;font-size:13px;font-weight:500;cursor:pointer;
+  border-radius:8px;padding:10px 16px;border:1px solid var(--border-strong);
+  background:none;color:var(--text);
+}
+.adminbar-in button.primary{background:var(--accent);border-color:var(--accent);color:#141013}
+.adminbar-in button:hover{filter:brightness(1.1)}
+
+/* ── rodapé ─────────────────────────────── */
+footer{
+  margin-top:64px;border-top:1px solid var(--border);
+  padding:26px 0 44px;color:var(--text-2);font-size:12px;
+}
+.total-line{display:flex;align-items:baseline;gap:14px}
+.total-line b{font-family:"Tenor Sans",sans-serif;font-weight:400;font-size:22px;color:var(--text)}
+
+/* ── lightbox ───────────────────────────── */
+.lb{
+  position:fixed;inset:0;z-index:50;display:none;
+  background:rgba(10,9,11,.88);backdrop-filter:blur(6px);
+  align-items:center;justify-content:center;padding:22px;
+}
+.lb.open{display:flex}
+.lb-box{
+  display:flex;gap:26px;align-items:center;max-width:760px;width:100%;
+  background:var(--surface);border:1px solid var(--border-strong);border-radius:14px;
+  padding:24px;
+}
+.lb-img{width:min(300px,42vw);flex-shrink:0}
+.lb-img img{width:100%;border-radius:10px;display:block}
+.lb-info h3{font-family:"Tenor Sans",sans-serif;font-weight:400;font-size:24px;margin-bottom:6px}
+.lb-info .meta{margin-bottom:14px}
+.lb-price{color:var(--accent);font-size:22px;font-weight:500;margin-bottom:18px}
+.lb-link{
+  display:inline-block;color:var(--text);text-decoration:none;font-size:13px;
+  border:1px solid var(--border-strong);border-radius:8px;padding:9px 14px;
+}
+.lb-link:hover{border-color:var(--accent);color:var(--accent)}
+.lb-close{
+  position:absolute;top:18px;right:22px;background:none;border:none;color:var(--text-2);
+  font-size:30px;cursor:pointer;line-height:1;font-family:inherit;
+}
+.lb-close:hover{color:var(--text)}
+.hidden{display:none!important}
+
+@media (max-width:640px){
+  .grid{grid-template-columns:repeat(auto-fill,minmax(132px,1fr));gap:14px 10px}
+  .lb-box{flex-direction:column;text-align:center;max-height:92vh;overflow:auto}
+  .totals{text-align:left}
+}
+@media (prefers-reduced-motion:reduce){
+  *{transition:none!important;animation:none!important}
+  html{scroll-behavior:auto}
+}
+</style>
+</head>
+<body>
+
+<span class="brand"><b>42</b>.dev</span>
+
+<header>
+  <div class="wrap">
+    <p class="eyebrow">Coleção pessoal · Singles à venda</p>
+    <div class="header-row">
+      <div>
+        <h1>Cartas Pokémon TCG</h1>
+        <p class="lead">Full Arts, Illustration Rares, promos carimbados e mais. Clique em qualquer carta para ver a arte ampliada e conferir na Liga Pokémon.</p>
+      </div>
+      <div class="totals">
+        <p class="label">Total geral</p>
+        <p class="value" id="totalHeader"></p>
+      </div>
+    </div>
+    <div class="toolbar">
+      <input class="search" id="busca" type="search" placeholder="Buscar carta pelo nome…" aria-label="Buscar carta pelo nome">
+      <span class="count-pill" id="contador"></span>
+      <!-- Para ativar o botão de contato, descomente a linha abaixo e troque SEUNUMERO:
+      <a class="cta" href="https://wa.me/SEUNUMERO?text=Oi!%20Vi%20sua%20vitrine%20de%20cartas%20Pok%C3%A9mon" target="_blank" rel="noopener">Reservar pelo WhatsApp</a>
+      -->
+    </div>
+  </div>
+</header>
+
+<main class="wrap" id="vitrine"></main>
+
+<footer>
+  <div class="wrap" style="display:flex;justify-content:space-between;gap:16px;flex-wrap:wrap;align-items:baseline">
+    <div class="total-line"><span>Total geral do lote</span><b id="totalFooter"></b></div>
+    <span>Artes das cartas © The Pokémon Company · Vitrine por <b style="color:var(--accent);font-weight:500">42</b>.dev</span>
+  </div>
+</footer>
+
+<div class="adminbar">
+  <div class="adminbar-in">
+    <span class="status" id="adminStatus"></span>
+    <button id="btnDesfazer">Desfazer tudo</button>
+    <button class="primary" id="btnExportar">Baixar HTML atualizado</button>
+  </div>
+</div>
+
+<div class="lb" id="lightbox" role="dialog" aria-modal="true" aria-label="Detalhe da carta">
+  <button class="lb-close" id="lbClose" aria-label="Fechar">×</button>
+  <div class="lb-box">
+    <div class="lb-img"><img id="lbImg" src="" alt=""></div>
+    <div class="lb-info">
+      <h3 id="lbName"></h3>
+      <p class="meta" id="lbMeta"></p>
+      <p class="lb-price" id="lbPrice"></p>
+      <a class="lb-link" id="lbLiga" href="#" target="_blank" rel="noopener">Ver na Liga Pokémon ↗</a>
+    </div>
+  </div>
+</div>
+
+<script>
+/* cópia intacta da página, capturada antes de qualquer alteração, usada na exportação */
+const PRISTINE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
+
+const CARDS = [{"n":"Treino de Faixa Preta","c":"255/217","s":"Ascended Heroes","q":1,"p":"9,90","cat":"trainers","t":"","img":"https://images.scrydex.com/pokemon/me2pt5-255/small","big":"https://images.scrydex.com/pokemon/me2pt5-255/large","fb":"https://images.pokemontcg.io/me2pt5/255.png"},{"n":"Dawn","c":"118/094","s":"Phantasmal Flames","q":1,"p":"57,90","cat":"trainers","t":"","img":"https://images.pokemontcg.io/me2/118.png","big":"https://images.pokemontcg.io/me2/118_hires.png","fb":""},{"n":"Cassiopeia","c":"086/064","s":"Shrouded Fable","q":1,"p":"20,00","cat":"trainers","t":"","img":"https://images.pokemontcg.io/sv6pt5/86.png","big":"https://images.pokemontcg.io/sv6pt5/86_hires.png","fb":""},{"n":"Drita (Perrin)","c":"209/167","s":"Twilight Masquerade","q":1,"p":"40,00","cat":"trainers","t":"","img":"https://images.pokemontcg.io/sv6/209.png","big":"https://images.pokemontcg.io/sv6/209_hires.png","fb":""},{"n":"Moira (Raifort)","c":"142/131","s":"Prismatic Evolutions","q":1,"p":"5,90","cat":"trainers","t":"","img":"https://images.pokemontcg.io/sv8pt5/142.png","big":"https://images.pokemontcg.io/sv8pt5/142_hires.png","fb":""},{"n":"Oricorio ex","c":"MEP 024","s":"Mega Promos","q":1,"p":"29,89","cat":"fa","t":"SIR promo","img":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_024_R_EN_SM.png","big":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_024_R_EN_LG.png","fb":""},{"n":"Mega Charizard X ex","c":"MEP 023","s":"Mega Promos","q":1,"p":"119,89","cat":"fa","t":"Promo UPC","img":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_023_R_EN_SM.png","big":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_023_R_EN_LG.png","fb":""},{"n":"Reshiram ex","c":"158/086","s":"White Flare","q":1,"p":"13,49","cat":"fa","t":"","img":"https://images.pokemontcg.io/rsv10pt5/158.png","big":"https://images.pokemontcg.io/rsv10pt5/158_hires.png","fb":""},{"n":"Flygon ex","c":"222/191","s":"Surging Sparks","q":1,"p":"11,64","cat":"fa","t":"","img":"https://images.pokemontcg.io/sv8/222.png","big":"https://images.pokemontcg.io/sv8/222_hires.png","fb":""},{"n":"Mega Clefable ex","c":"103/88","s":"Perfect Order","q":1,"p":"19,90","cat":"fa","t":"","img":"https://images.scrydex.com/pokemon/me3-103/small","big":"https://images.scrydex.com/pokemon/me3-103/large","fb":"https://images.pokemontcg.io/me3/103.png"},{"n":"Ludicolo","c":"095/094","s":"Phantasmal Flames","q":1,"p":"11,80","cat":"ar","t":"","img":"https://images.pokemontcg.io/me2/95.png","big":"https://images.pokemontcg.io/me2/95_hires.png","fb":""},{"n":"Spearow","c":"151/132","s":"Mega Evolution","q":2,"p":"46,90","cat":"ar","t":"","img":"https://images.pokemontcg.io/me1/151.png","big":"https://images.pokemontcg.io/me1/151_hires.png","fb":""},{"n":"Bulbasaur","c":"133/132","s":"Mega Evolution","q":2,"p":"59,98","cat":"ar","t":"Carimbo Mega Evolution","img":"https://images.pokemontcg.io/me1/133.png","big":"https://images.pokemontcg.io/me1/133_hires.png","fb":""},{"n":"Chespin","c":"087/086","s":"Chaos Rising","q":2,"p":"50,00","cat":"ar","t":"","img":"https://images.scrydex.com/pokemon/me4-87/small","big":"https://images.scrydex.com/pokemon/me4-87/large","fb":"https://images.pokemontcg.io/me4/87.png"},{"n":"Nymble","c":"096/094","s":"Phantasmal Flames","q":2,"p":"13,00","cat":"ar","t":"","img":"https://images.pokemontcg.io/me2/96.png","big":"https://images.pokemontcg.io/me2/96_hires.png","fb":""},{"n":"Snover","c":"140/132","s":"Mega Evolution","q":1,"p":"11,90","cat":"ar","t":"","img":"https://images.pokemontcg.io/me1/140.png","big":"https://images.pokemontcg.io/me1/140_hires.png","fb":""},{"n":"Ambipom","c":"107/094","s":"Phantasmal Flames","q":1,"p":"9,50","cat":"ar","t":"","img":"https://images.pokemontcg.io/me2/107.png","big":"https://images.pokemontcg.io/me2/107_hires.png","fb":""},{"n":"Pansear","c":"099/086","s":"White Flare","q":1,"p":"30,90","cat":"ar","t":"","img":"https://images.pokemontcg.io/rsv10pt5/99.png","big":"https://images.pokemontcg.io/rsv10pt5/99_hires.png","fb":""},{"n":"Yamper","c":"099/094","s":"Phantasmal Flames","q":1,"p":"12,00","cat":"ar","t":"","img":"https://images.pokemontcg.io/me2/99.png","big":"https://images.pokemontcg.io/me2/99_hires.png","fb":""},{"n":"Kingambit","c":"SVP 130","s":"SV Promos","q":1,"p":"11,00","cat":"ar","t":"","img":"https://images.pokemontcg.io/svp/130.png","big":"https://images.pokemontcg.io/svp/130_hires.png","fb":""},{"n":"Duraludon VMAX","c":"TG21/TG30","s":"Silver Tempest TG","q":1,"p":"90,00","cat":"ar","t":"","img":"https://images.pokemontcg.io/swsh12tg/TG21.png","big":"https://images.pokemontcg.io/swsh12tg/TG21_hires.png","fb":""},{"n":"Wooper de Paldea","c":"102/094","s":"Phantasmal Flames","q":1,"p":"12,00","cat":"ar","t":"","img":"https://images.pokemontcg.io/me2/102.png","big":"https://images.pokemontcg.io/me2/102_hires.png","fb":""},{"n":"Turtwig","c":"MEP 040","s":"Mega Promos","q":1,"p":"31,00","cat":"ar","t":"Promo","img":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_040_R_EN_SM.png","big":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_040_R_EN_LG.png","fb":""},{"n":"Chimchar","c":"MEP 041","s":"Mega Promos","q":1,"p":"28,50","cat":"ar","t":"Promo","img":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_041_R_EN_SM.png","big":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_041_R_EN_LG.png","fb":""},{"n":"Spewpa","c":"089/88","s":"Perfect Order","q":1,"p":"9,36","cat":"ar","t":"","img":"https://images.scrydex.com/pokemon/me3-89/small","big":"https://images.scrydex.com/pokemon/me3-89/large","fb":"https://images.pokemontcg.io/me3/89.png"},{"n":"Steelix","c":"150/132","s":"Mega Evolution","q":1,"p":"21,15","cat":"ar","t":"","img":"https://images.pokemontcg.io/me1/150.png","big":"https://images.pokemontcg.io/me1/150_hires.png","fb":""},{"n":"Piplup","c":"098/094","s":"Phantasmal Flames","q":1,"p":"50,00","cat":"ar","t":"","img":"https://images.pokemontcg.io/me2/98.png","big":"https://images.pokemontcg.io/me2/98_hires.png","fb":""},{"n":"Garganacl","c":"147/132","s":"Mega Evolution","q":1,"p":"7,44","cat":"ar","t":"","img":"https://images.pokemontcg.io/me1/147.png","big":"https://images.pokemontcg.io/me1/147_hires.png","fb":""},{"n":"Raticate","c":"099/88","s":"Perfect Order","q":1,"p":"17,80","cat":"ar","t":"","img":"https://images.scrydex.com/pokemon/me3-99/small","big":"https://images.scrydex.com/pokemon/me3-99/large","fb":"https://images.pokemontcg.io/me3/99.png"},{"n":"Aurorus","c":"092/88","s":"Perfect Order","q":1,"p":"9,90","cat":"ar","t":"","img":"https://images.scrydex.com/pokemon/me3-92/small","big":"https://images.scrydex.com/pokemon/me3-92/large","fb":"https://images.pokemontcg.io/me3/92.png"},{"n":"Spheal","c":"199/191","s":"Surging Sparks","q":1,"p":"40,00","cat":"ar","t":"","img":"https://images.pokemontcg.io/sv8/199.png","big":"https://images.pokemontcg.io/sv8/199_hires.png","fb":""},{"n":"Flygon","c":"101/094","s":"Phantasmal Flames","q":1,"p":"14,89","cat":"ar","t":"","img":"https://images.pokemontcg.io/me2/101.png","big":"https://images.pokemontcg.io/me2/101_hires.png","fb":""},{"n":"Purrloin","c":"136/086","s":"White Flare","q":1,"p":"99,89","cat":"ar","t":"","img":"https://images.pokemontcg.io/rsv10pt5/136.png","big":"https://images.pokemontcg.io/rsv10pt5/136_hires.png","fb":""},{"n":"Pikachu","c":"051p","s":"Pokémon Day 2026","q":1,"p":"27,00","cat":"normal","t":"Promo Pokémon Day 2026","img":"","big":"","fb":""},{"n":"Sylveon","c":"040/131","s":"Prismatic Evolutions","q":1,"p":"25,00","cat":"normal","t":"Carimbo Pokémon Day 2025","img":"https://images.pokemontcg.io/sv8pt5/40.png","big":"https://images.pokemontcg.io/sv8pt5/40_hires.png","fb":""},{"n":"Pikachu","c":"SVP 190","s":"Worlds 2024","q":1,"p":"39,00","cat":"normal","t":"Promo Worlds 2024","img":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/SVP/SVP_190_R_EN_SM.png","big":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/SVP/SVP_190_R_EN_LG.png","fb":"https://images.pokemontcg.io/svp/190.png"},{"n":"Cinccino ex","c":"073/086","s":"Chaos Rising","q":1,"p":"3,89","cat":"normal","t":"","img":"https://images.scrydex.com/pokemon/me4-73/small","big":"https://images.scrydex.com/pokemon/me4-73/large","fb":"https://images.pokemontcg.io/me4/73.png"},{"n":"Beedrill ex","c":"003/086","s":"Chaos Rising","q":1,"p":"5,70","cat":"normal","t":"","img":"https://images.scrydex.com/pokemon/me4-3/small","big":"https://images.scrydex.com/pokemon/me4-3/large","fb":"https://images.pokemontcg.io/me4/3.png"},{"n":"Krookodile ex","c":"055/086","s":"Chaos Rising","q":1,"p":"1,95","cat":"normal","t":"","img":"https://images.scrydex.com/pokemon/me4-55/small","big":"https://images.scrydex.com/pokemon/me4-55/large","fb":"https://images.pokemontcg.io/me4/55.png"},{"n":"Mega Gallade ex","c":"048/086","s":"Chaos Rising","q":1,"p":"3,45","cat":"normal","t":"","img":"https://images.scrydex.com/pokemon/me4-48/small","big":"https://images.scrydex.com/pokemon/me4-48/large","fb":"https://images.pokemontcg.io/me4/48.png"},{"n":"Mega Diancie ex","c":"041/094","s":"Phantasmal Flames","q":1,"p":"3,90","cat":"normal","t":"","img":"https://images.pokemontcg.io/me2/41.png","big":"https://images.pokemontcg.io/me2/41_hires.png","fb":""},{"n":"Mega Abomasnow ex","c":"036/132","s":"Mega Evolution","q":1,"p":"1,99","cat":"normal","t":"","img":"https://images.pokemontcg.io/me1/36.png","big":"https://images.pokemontcg.io/me1/36_hires.png","fb":""},{"n":"Mismagius ex","c":"036/094","s":"Phantasmal Flames","q":1,"p":"3,89","cat":"normal","t":"","img":"https://images.pokemontcg.io/me2/36.png","big":"https://images.pokemontcg.io/me2/36_hires.png","fb":""},{"n":"Excadrill ex","c":"046/086","s":"Black Bolt","q":1,"p":"2,50","cat":"normal","t":"","img":"https://images.pokemontcg.io/zsv10pt5/46.png","big":"https://images.pokemontcg.io/zsv10pt5/46_hires.png","fb":""},{"n":"Mega Camerupt ex","c":"022/132","s":"Mega Evolution","q":1,"p":"2,93","cat":"normal","t":"","img":"https://images.pokemontcg.io/me1/22.png","big":"https://images.pokemontcg.io/me1/22_hires.png","fb":""},{"n":"Mega Gengar ex","c":"056/094","s":"Phantasmal Flames","q":1,"p":"7,00","cat":"normal","t":"","img":"https://images.pokemontcg.io/me2/56.png","big":"https://images.pokemontcg.io/me2/56_hires.png","fb":""},{"n":"Charizard ex","c":"125/197","s":"Obsidian Flames","q":1,"p":"49,90","cat":"normal","t":"Carimbo de liga","img":"https://images.pokemontcg.io/sv3/125.png","big":"https://images.pokemontcg.io/sv3/125_hires.png","fb":""},{"n":"Mega Latias ex","c":"100/132","s":"Mega Evolution","q":1,"p":"1,99","cat":"normal","t":"","img":"https://images.pokemontcg.io/me1/100.png","big":"https://images.pokemontcg.io/me1/100_hires.png","fb":""},{"n":"Mega Zygarde ex","c":"047/88","s":"Perfect Order","q":1,"p":"4,87","cat":"normal","t":"","img":"https://images.scrydex.com/pokemon/me3-47/small","big":"https://images.scrydex.com/pokemon/me3-47/large","fb":"https://images.pokemontcg.io/me3/47.png"},{"n":"Mega Lucario ex","c":"077/132","s":"Mega Evolution","q":2,"p":"10,80","cat":"normal","t":"","img":"https://images.pokemontcg.io/me1/77.png","big":"https://images.pokemontcg.io/me1/77_hires.png","fb":""},{"n":"Ursaluna Lua Sangrenta ex","c":"SVP 177","s":"SV Promos","q":1,"p":"10,00","cat":"normal","t":"Promo","img":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/SVP/SVP_177_R_EN_SM.png","big":"https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/SVP/SVP_177_R_EN_LG.png","fb":"https://images.pokemontcg.io/svp/177.png"},{"n":"Raichu V","c":"045/172","s":"Brilliant Stars","q":1,"p":"19,90","cat":"normal","t":"","img":"https://images.pokemontcg.io/swsh9/45.png","big":"https://images.pokemontcg.io/swsh9/45_hires.png","fb":""},{"n":"Mega Lopunny ex","c":"084/094","s":"Phantasmal Flames","q":1,"p":"4,00","cat":"normal","t":"","img":"https://images.pokemontcg.io/me2/84.png","big":"https://images.pokemontcg.io/me2/84_hires.png","fb":""},{"n":"Mega Sharpedo ex","c":"061/094","s":"Phantasmal Flames","q":1,"p":"4,90","cat":"normal","t":"","img":"https://images.pokemontcg.io/me2/61.png","big":"https://images.pokemontcg.io/me2/61_hires.png","fb":""},{"n":"Arceus VSTAR","c":"SWSH307","s":"SWSH Promos","q":1,"p":"16,90","cat":"normal","t":"Promo","img":"https://images.pokemontcg.io/swshp/SWSH307.png","big":"https://images.pokemontcg.io/swshp/SWSH307_hires.png","fb":""},{"n":"Arceus V","c":"SWSH306","s":"SWSH Promos","q":1,"p":"15,00","cat":"normal","t":"Promo","img":"https://images.pokemontcg.io/swshp/SWSH306.png","big":"https://images.pokemontcg.io/swshp/SWSH306_hires.png","fb":""},{"n":"Stunfisk ex","c":"114/217","s":"Ascended Heroes","q":1,"p":"2,99","cat":"normal","t":"","img":"https://images.scrydex.com/pokemon/me2pt5-114/small","big":"https://images.scrydex.com/pokemon/me2pt5-114/large","fb":"https://images.pokemontcg.io/me2pt5/114.png"},{"n":"Raikou V","c":"048/172","s":"Brilliant Stars","q":1,"p":"117,00","cat":"normal","t":"Carimbo de liga","img":"https://images.pokemontcg.io/swsh9/48.png","big":"https://images.pokemontcg.io/swsh9/48_hires.png","fb":""},{"n":"Greninja Radiante","c":"046/189","s":"Astral Radiance","q":1,"p":"9,90","cat":"normal","t":"","img":"https://images.pokemontcg.io/swsh10/46.png","big":"https://images.pokemontcg.io/swsh10/46_hires.png","fb":""},{"n":"Umbreon V","c":"SWSH203","s":"SWSH Promos","q":1,"p":"40,00","cat":"normal","t":"Promo","img":"https://images.pokemontcg.io/swshp/SWSH203.png","big":"https://images.pokemontcg.io/swshp/SWSH203_hires.png","fb":""},{"n":"Umbreon V","c":"094/203","s":"Evolving Skies","q":1,"p":"30,00","cat":"normal","t":"","img":"https://images.pokemontcg.io/swsh7/94.png","big":"https://images.pokemontcg.io/swsh7/94_hires.png","fb":""},{"n":"Leafeon ex","c":"006/131","s":"Prismatic Evolutions","q":1,"p":"19,90","cat":"normal","t":"","img":"https://images.pokemontcg.io/sv8pt5/6.png","big":"https://images.pokemontcg.io/sv8pt5/6_hires.png","fb":""},{"n":"Sylveon ex","c":"086/191","s":"Surging Sparks","q":1,"p":"24,30","cat":"normal","t":"","img":"https://images.pokemontcg.io/sv8/86.png","big":"https://images.pokemontcg.io/sv8/86_hires.png","fb":""},{"n":"Vaporeon ex","c":"023/131","s":"Prismatic Evolutions","q":1,"p":"17,99","cat":"normal","t":"","img":"https://images.pokemontcg.io/sv8pt5/23.png","big":"https://images.pokemontcg.io/sv8pt5/23_hires.png","fb":""},{"n":"Glaceon ex","c":"026/131","s":"Prismatic Evolutions","q":1,"p":"13,80","cat":"normal","t":"","img":"https://images.pokemontcg.io/sv8pt5/26.png","big":"https://images.pokemontcg.io/sv8pt5/26_hires.png","fb":""}];
+
+const SECOES = [
+  ["trainers","Trainers Full Art"],
+  ["fa","Pokémon Full Art e SAR"],
+  ["ar","Pokémon Illustration Rare"],
+  ["normal","Pokémon de arte normal"]
+];
+
+/* estado do modo gerenciamento: cada carta ganha sold=false e preço unitário */
+const val = p => parseFloat(p.replace(/\./g,"").replace(",","."));
+const brl = v => v.toLocaleString("pt-BR",{minimumFractionDigits:2,maximumFractionDigits:2});
+CARDS.forEach(c=>{ c.sold=false; c.unit=val(c.p)/c.q; c._q0=c.q; c._p0=c.p; });
+
+const vitrine = document.getElementById("vitrine");
+const isAdmin = () => location.hash === "#gerenciar";
+const fmtQtd = q => q > 1 ? `<span class="qty">${q}×</span>` : "";
+
+const PLACEHOLDER_SVG = `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" aria-hidden="true"><circle cx="12" cy="12" r="9"/><path d="M3 12h6.2M14.8 12H21"/><circle cx="12" cy="12" r="2.8"/></svg>`;
+
+function thumbHTML(c, idx){
+  if(!c.img){
+    return `<div class="thumb"><div class="ph">${PLACEHOLDER_SVG}<span>Arte não disponível<br>online ainda</span></div>${fmtQtd(c.q)}</div>`;
+  }
+  return `<div class="thumb"><img loading="lazy" src="${c.img}" alt="Carta ${c.n} ${c.c}" data-fb="${c.fb||""}" data-idx="${idx}">${fmtQtd(c.q)}</div>`;
+}
+
+function adminBtnsHTML(c, i){
+  if(!isAdmin()) return "";
+  const minus = (!c.sold && c.q > 1)
+    ? `<button class="btn-minus" data-minus="${i}" title="Vendi 1 unidade">−1</button>` : "";
+  const soldLabel = c.sold ? "↺" : "×";
+  const soldTitle = c.sold ? "Desfazer venda" : "Marcar como vendida";
+  return `<div class="admin-btns">${minus}<button class="btn-sold" data-sold="${i}" title="${soldTitle}">${soldLabel}</button></div>
+          <div class="sold-flag"><span>Vendida</span></div>`;
+}
+
+function totalAtual(){
+  return CARDS.filter(c=>!c.sold).reduce((s,c)=>s + c.unit*c.q, 0);
+}
+
+function atualizaTotais(){
+  const t = "R$ " + brl(totalAtual());
+  document.getElementById("totalHeader").textContent = t;
+  document.getElementById("totalFooter").textContent = t;
+  if(isAdmin()){
+    const vendidas = CARDS.filter(c=>c.sold).length;
+    document.getElementById("adminStatus").innerHTML =
+      `Modo gerenciamento: use <b>×</b> para marcar vendida e <b>−1</b> para baixar uma unidade · ` +
+      `<b>${vendidas}</b> carta${vendidas===1?"":"s"} marcada${vendidas===1?"":"s"} · novo total <b>${t}</b>`;
+  }
+}
+
+function render(filtro=""){
+  const f = filtro.trim().toLowerCase();
+  document.body.classList.toggle("admin", isAdmin());
+  let total = 0;
+  vitrine.innerHTML = SECOES.map(([cat,titulo])=>{
+    const itens = CARDS.map((c,i)=>({c,i}))
+      .filter(({c})=>c.cat===cat && (!f || c.n.toLowerCase().includes(f)) && (isAdmin() || !c.sold));
+    if(!itens.length) return "";
+    total += itens.length;
+    return `<section>
+      <div class="sec-head"><h2>${titulo}</h2><span class="n">${itens.length} carta${itens.length>1?"s":""}</span></div>
+      <div class="grid">${itens.map(({c,i})=>`
+        <article class="card${c.sold?" sold":""}" tabindex="0" role="button" data-open="${i}" aria-label="${c.n}, R$ ${c.p}">
+          ${adminBtnsHTML(c,i)}
+          ${thumbHTML(c,i)}
+          <div>
+            <p class="name">${c.n}</p>
+            <p class="meta">${c.c} · ${c.s}</p>
+            ${c.t?`<span class="tag">${c.t}</span>`:""}
+          </div>
+          <div class="price-row">
+            <span class="price">R$ ${c.p}</span>
+            ${c.q>1?`<small class="meta">${c.q} disponíveis</small>`:""}
+          </div>
+        </article>`).join("")}
+      </div>
+    </section>`;
+  }).join("");
+  document.getElementById("contador").textContent = f ? `${total} resultado${total===1?"":"s"}` : `${CARDS.filter(c=>!c.sold).length} cartas no total`;
+  atualizaTotais();
+}
+
+/* fallback de imagem: tenta a URL alternativa, senão vira placeholder */
+vitrine.addEventListener("error", e=>{
+  const img = e.target;
+  if(img.tagName!=="IMG") return;
+  const fb = img.dataset.fb;
+  if(fb){ img.dataset.fb=""; img.src=fb; return; }
+  const c = CARDS[+img.dataset.idx];
+  img.parentElement.innerHTML = `<div class="ph">${PLACEHOLDER_SVG}<span>${c.n}<br>${c.c}</span></div>` + fmtQtd(c.q);
+}, true);
+
+/* lightbox */
+const lb = document.getElementById("lightbox");
+let lastFocus = null;
+function abrir(i){
+  const c = CARDS[i];
+  lastFocus = document.activeElement;
+  document.getElementById("lbImg").src = c.big || c.img || "";
+  document.getElementById("lbImg").alt = `Carta ${c.n} ${c.c}`;
+  document.getElementById("lbImg").parentElement.classList.toggle("hidden", !c.big && !c.img);
+  document.getElementById("lbName").textContent = c.n;
+  document.getElementById("lbMeta").textContent = `${c.c} · ${c.s}` + (c.t?` · ${c.t}`:"") + (c.q>1?` · ${c.q} disponíveis`:"");
+  document.getElementById("lbPrice").textContent = `R$ ${c.p}`;
+  const termo = c.n.replace(/\s*\(.*\)/,"");
+  document.getElementById("lbLiga").href = `https://www.ligapokemon.com.br/?view=cards/search&card=${encodeURIComponent(termo)}`;
+  lb.classList.add("open");
+  document.getElementById("lbClose").focus();
+}
+function fechar(){
+  lb.classList.remove("open");
+  if(lastFocus) lastFocus.focus();
+}
+vitrine.addEventListener("click", e=>{
+  const bSold = e.target.closest("[data-sold]");
+  if(bSold){ e.stopPropagation(); marcarVendida(+bSold.dataset.sold); return; }
+  const bMinus = e.target.closest("[data-minus]");
+  if(bMinus){ e.stopPropagation(); baixarUnidade(+bMinus.dataset.minus); return; }
+  const card = e.target.closest("[data-open]");
+  if(card) abrir(+card.dataset.open);
+});
+vitrine.addEventListener("keydown", e=>{
+  if(e.key==="Enter" || e.key===" "){
+    if(e.target.closest("[data-sold],[data-minus]")) return;
+    const card = e.target.closest("[data-open]");
+    if(card){ e.preventDefault(); abrir(+card.dataset.open); }
+  }
+});
+document.getElementById("lbClose").addEventListener("click", fechar);
+lb.addEventListener("click", e=>{ if(e.target===lb) fechar(); });
+document.addEventListener("keydown", e=>{ if(e.key==="Escape" && lb.classList.contains("open")) fechar(); });
+
+document.getElementById("busca").addEventListener("input", e=>render(e.target.value));
+
+/* ── gerenciamento ──────────────────────── */
+function marcarVendida(i){
+  CARDS[i].sold = !CARDS[i].sold;
+  render(document.getElementById("busca").value);
+}
+function baixarUnidade(i){
+  const c = CARDS[i];
+  c.q -= 1;
+  if(c.q <= 0){ c.q = 1; c.sold = true; }
+  c.p = brl(c.unit * c.q);
+  render(document.getElementById("busca").value);
+}
+document.getElementById("btnDesfazer").addEventListener("click", ()=>{
+  CARDS.forEach(c=>{ c.sold = false; c.q = c._q0; c.p = c._p0; });
+  render(document.getElementById("busca").value);
+});
+
+document.getElementById("btnExportar").addEventListener("click", ()=>{
+  const restantes = CARDS.filter(c=>!c.sold).map(c=>({
+    n:c.n, c:c.c, s:c.s, q:c.q, p:c.p, cat:c.cat, t:c.t, img:c.img, big:c.big, fb:c.fb
+  }));
+  const nadaMudou = restantes.length === CARDS.length && CARDS.every(c=>c.q===c._q0);
+  if(nadaMudou && !confirm("Nenhuma carta foi marcada como vendida. Baixar mesmo assim?")) return;
+  const marcador = "const CARDS" + " = ";
+  const ini = PRISTINE.indexOf(marcador);
+  const fim = PRISTINE.indexOf("];", ini);
+  const novoHtml = PRISTINE.slice(0, ini) + marcador +
+    JSON.stringify(restantes) + ";" + PRISTINE.slice(fim + 2);
+  const blob = new Blob([novoHtml], {type:"text/html;charset=utf-8"});
+  const a = document.createElement("a");
+  a.href = URL.createObjectURL(blob);
+  a.download = "vitrine_cards_pokemon.html";
+  a.click();
+  URL.revokeObjectURL(a.href);
+});
+
+window.addEventListener("hashchange", ()=>render(document.getElementById("busca").value));
+render();
+</script></body></html>
