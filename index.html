@@ -1,12 +1,13 @@
 <!DOCTYPE html>
-<html lang="pt-BR"><head>
+<html lang="pt-BR">
+<head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Cartas Pokémon TCG à venda — 42.dev</title>
 <meta name="description" content="Vitrine de cartas Pokémon TCG à venda: Full Arts, Illustration Rares, promos e mais.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="">
-<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&amp;family=Tenor+Sans&amp;display=swap" rel="stylesheet">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;500&family=Tenor+Sans&display=swap" rel="stylesheet">
 <style>
 :root{
   --bg:#111013;
@@ -299,13 +300,13 @@ footer{
 /* cópia intacta da página, capturada antes de qualquer alteração, usada na exportação */
 const PRISTINE = "<!DOCTYPE html>\n" + document.documentElement.outerHTML;
 
-const CARDS = [];
+const CARDS = [{"n": "Solosis", "c": "037/086", "s": "Black Bolt", "q": 1, "p": "14,99", "cat": "mb", "t": "Reverse Master Ball", "img": "https://images.pokemontcg.io/zsv10pt5/37.png", "big": "https://images.pokemontcg.io/zsv10pt5/37_hires.png", "fb": ""}, {"n": "Vanilluxe", "c": "029/086", "s": "White Flare", "q": 1, "p": "19,90", "cat": "mb", "t": "Reverse Master Ball", "img": "https://images.pokemontcg.io/rsv10pt5/29.png", "big": "https://images.pokemontcg.io/rsv10pt5/29_hires.png", "fb": ""}, {"n": "Mega Excadrill ex", "c": "103/084", "s": "Pitch Black", "q": 1, "p": "30,99", "cat": "fa", "t": "", "img": "https://images.scrydex.com/pokemon/me5-103/small", "big": "https://images.scrydex.com/pokemon/me5-103/large", "fb": "https://images.pokemontcg.io/me5/103.png"}, {"n": "Lurantis ex", "c": "096/084", "s": "Pitch Black", "q": 1, "p": "13,00", "cat": "fa", "t": "", "img": "https://images.scrydex.com/pokemon/me5-96/small", "big": "https://images.scrydex.com/pokemon/me5-96/large", "fb": "https://images.pokemontcg.io/me5/96.png"}, {"n": "Reshiram ex", "c": "158/086", "s": "White Flare", "q": 1, "p": "13,49", "cat": "fa", "t": "", "img": "https://images.pokemontcg.io/rsv10pt5/158.png", "big": "https://images.pokemontcg.io/rsv10pt5/158_hires.png", "fb": ""}, {"n": "Zekrom ex", "c": "158/086", "s": "Black Bolt", "q": 1, "p": "14,99", "cat": "fa", "t": "", "img": "https://images.pokemontcg.io/zsv10pt5/158.png", "big": "https://images.pokemontcg.io/zsv10pt5/158_hires.png", "fb": ""}, {"n": "Recruta do Clã Corrosão (Rust Syndicate Grunt)", "c": "112/084", "s": "Pitch Black", "q": 1, "p": "17,39", "cat": "fa", "t": "", "img": "https://images.scrydex.com/pokemon/me5-112/small", "big": "https://images.scrydex.com/pokemon/me5-112/large", "fb": "https://images.pokemontcg.io/me5/112.png"}, {"n": "Pesquisa de Professores: Prof. Willow", "c": "078/078", "s": "Pokémon GO", "q": 1, "p": "30,00", "cat": "fa", "t": "", "img": "https://images.pokemontcg.io/pgo/78.png", "big": "https://images.pokemontcg.io/pgo/78_hires.png", "fb": ""}, {"n": "Toucannon", "c": "094/084", "s": "Pitch Black", "q": 1, "p": "14,89", "cat": "ar", "t": "", "img": "https://images.scrydex.com/pokemon/me5-94/small", "big": "https://images.scrydex.com/pokemon/me5-94/large", "fb": "https://images.pokemontcg.io/me5/94.png"}, {"n": "Armarouge", "c": "086/084", "s": "Pitch Black", "q": 1, "p": "24,50", "cat": "ar", "t": "", "img": "https://images.scrydex.com/pokemon/me5-86/small", "big": "https://images.scrydex.com/pokemon/me5-86/large", "fb": "https://images.pokemontcg.io/me5/86.png"}, {"n": "Slowbro", "c": "090/084", "s": "Pitch Black", "q": 1, "p": "39,89", "cat": "ar", "t": "", "img": "https://images.scrydex.com/pokemon/me5-90/small", "big": "https://images.scrydex.com/pokemon/me5-90/large", "fb": "https://images.pokemontcg.io/me5/90.png"}, {"n": "Thievul", "c": "092/084", "s": "Pitch Black", "q": 1, "p": "8,50", "cat": "ar", "t": "", "img": "https://images.scrydex.com/pokemon/me5-92/small", "big": "https://images.scrydex.com/pokemon/me5-92/large", "fb": "https://images.pokemontcg.io/me5/92.png"}, {"n": "Squirtle", "c": "MEP 039", "s": "Mega Promos", "q": 1, "p": "67,90", "cat": "ar", "t": "Promo First Partner", "img": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_039_R_EN_SM.png", "big": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_039_R_EN_LG.png", "fb": ""}, {"n": "Bulbasaur", "c": "MEP 037", "s": "Mega Promos", "q": 1, "p": "74,00", "cat": "ar", "t": "Promo First Partner", "img": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_037_R_EN_SM.png", "big": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_037_R_EN_LG.png", "fb": ""}, {"n": "Charmander", "c": "MEP 038", "s": "Mega Promos", "q": 1, "p": "93,98", "cat": "ar", "t": "Promo First Partner", "img": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_038_R_EN_SM.png", "big": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_038_R_EN_LG.png", "fb": ""}, {"n": "Turtwig", "c": "MEP 040", "s": "Mega Promos", "q": 1, "p": "31,31", "cat": "ar", "t": "Promo First Partner", "img": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_040_R_EN_SM.png", "big": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_040_R_EN_LG.png", "fb": ""}, {"n": "Chimchar", "c": "MEP 041", "s": "Mega Promos", "q": 1, "p": "27,50", "cat": "ar", "t": "Promo First Partner", "img": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_041_R_EN_SM.png", "big": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_041_R_EN_LG.png", "fb": ""}, {"n": "Piplup", "c": "MEP 042", "s": "Mega Promos", "q": 1, "p": "37,90", "cat": "ar", "t": "Promo First Partner", "img": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_042_R_EN_SM.png", "big": "https://limitlesstcg.nyc3.cdn.digitaloceanspaces.com/tpci/MEP/MEP_042_R_EN_LG.png", "fb": ""}, {"n": "Mega Darkrai ex", "c": "048/084", "s": "Pitch Black", "q": 1, "p": "12,89", "cat": "dr", "t": "", "img": "https://images.scrydex.com/pokemon/me5-48/small", "big": "https://images.scrydex.com/pokemon/me5-48/large", "fb": "https://images.pokemontcg.io/me5/48.png"}, {"n": "Morpeko ex", "c": "055/084", "s": "Pitch Black", "q": 1, "p": "3,96", "cat": "dr", "t": "", "img": "https://images.scrydex.com/pokemon/me5-55/small", "big": "https://images.scrydex.com/pokemon/me5-55/large", "fb": "https://images.pokemontcg.io/me5/55.png"}, {"n": "Wailord ex", "c": "016/084", "s": "Pitch Black", "q": 1, "p": "3,47", "cat": "dr", "t": "", "img": "https://images.scrydex.com/pokemon/me5-16/small", "big": "https://images.scrydex.com/pokemon/me5-16/large", "fb": "https://images.pokemontcg.io/me5/16.png"}, {"n": "Lurantis ex", "c": "004/084", "s": "Pitch Black", "q": 1, "p": "3,47", "cat": "dr", "t": "", "img": "https://images.scrydex.com/pokemon/me5-4/small", "big": "https://images.scrydex.com/pokemon/me5-4/large", "fb": "https://images.pokemontcg.io/me5/4.png"}, {"n": "Rampardos ex", "c": "045/084", "s": "Pitch Black", "q": 1, "p": "3,95", "cat": "dr", "t": "", "img": "https://images.scrydex.com/pokemon/me5-45/small", "big": "https://images.scrydex.com/pokemon/me5-45/large", "fb": "https://images.pokemontcg.io/me5/45.png"}];
 
 const SECOES = [
-  ["trainers","Trainers Full Art"],
-  ["fa","Pokémon Full Art e SAR"],
+  ["mb","Pokémon Master Ball"],
+  ["fa","Pokémon e Trainers Full Art"],
   ["ar","Pokémon Illustration Rare"],
-  ["normal","Pokémon de arte normal"]
+  ["dr","Pokémon Rara Dupla"]
 ];
 
 /* estado do modo gerenciamento: cada carta ganha sold=false e preço unitário */
@@ -474,4 +475,6 @@ document.getElementById("btnExportar").addEventListener("click", ()=>{
 
 window.addEventListener("hashchange", ()=>render(document.getElementById("busca").value));
 render();
-</script></body></html>
+</script>
+</body>
+</html>
